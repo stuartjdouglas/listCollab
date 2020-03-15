@@ -3,6 +3,7 @@ const filesToCache = [
     '/',
     '/index.html',
     '/styles/style.css',
+    '/js/app.js',
     '/js/main.js'
 ];
 

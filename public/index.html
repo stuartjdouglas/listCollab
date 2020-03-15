@@ -17,25 +17,15 @@
   <meta name="msapplication-TileImage" content="images/hello-icon-144.png">
   <meta name="msapplication-TileColor" content="#FFFFFF">
 
+  <!-- development version, includes helpful console warnings -->
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
 </head>
 
 <body class="fullscreen">
-  <div class="container">
-    <h1 class="title">Hello World!</h1>
-  </div>
+  <div id="app">Users: {{users}} Date: {{date}}</div>
   <script src="js/main.js"></script>
+  <script src="js/app.js"></script>
 </body>
 
 </html>
-
-<!-- 
-<script>
-  const ws = new WebSocket('ws://localhost:8080/');
-  ws.onopen = function () {
-    console.log('WebSocket Client Connected');
-    ws.send('Hi this is web client.');
-  };
-  ws.onmessage = function (e) {
-    console.log("Received: '" + e.data + "'");
-  };
-</script> -->

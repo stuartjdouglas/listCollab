@@ -1,29 +1,24 @@
 const express = require('express');
 const app = express();
-const http = require('http');
-const WebSocketServer = require('websocket').server;
-const server = http.createServer();
+const { Server } = require('ws');
 const path = require('path');
 const port = process.env.PORT || 8080;
 
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.listen(port, () => console.log('listening on 80'));
-server.listen(8080);
+const server = express()
+    .use(express.static(path.join(__dirname, 'public')))
+    .listen(port, () => console.log(`Listening on ${port}`));
 
+const wss = new Server({ server });
 
-
-
-const wsServer = new WebSocketServer({
-    httpServer: server
+wss.on('connection', (ws) => {
+    console.log('Connection started');
+    ws.on('close', () => console.log('Client disconnected'));
 });
-wsServer.on('request', (request) => {
-    const connection = request.accept(null, request.origin);
-    connection.on('message', (message) => {
-        console.log('Received Message:', message.utf8Data);
-        connection.sendUTF('Hi this is WebSocket server!');
+
+setInterval(() => {
+    wss.clients.forEach((client) => {
+        client.send(new Date().toTimeString());
     });
-    connection.on('close', (reasonCode, description) => {
-        console.log('Client has disconnected.');
-    });
-});
+}, 1000);
