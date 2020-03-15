@@ -4,10 +4,11 @@ const http = require('http');
 const WebSocketServer = require('websocket').server;
 const server = http.createServer();
 const path = require('path');
+const port = process.env.PORT || 8080;
 
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.listen(80, () => console.log('listening on 80'));
+app.listen(port, () => console.log('listening on 80'));
 server.listen(8080);
 
 
