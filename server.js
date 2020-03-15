@@ -4,7 +4,7 @@ const http = require('http');
 const WebSocketServer = require('websocket').server;
 const server = http.createServer();
 
-app.use(express.static('public'));
+app.use(express.static(path.join(__dirname, 'public')));
 
 app.listen(80, () => console.log('listening on 80'));
 server.listen(8080);
