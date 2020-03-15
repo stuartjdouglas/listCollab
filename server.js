@@ -3,6 +3,7 @@ const app = express();
 const http = require('http');
 const WebSocketServer = require('websocket').server;
 const server = http.createServer();
+const path = require('path');
 
 app.use(express.static(path.join(__dirname, 'public')));
 
